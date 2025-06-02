@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Edit Post{% else %}New Post{% endif %}{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">
+        {% if form.instance.pk %}Edit Post{% else %}Create New Post{% endif %}
+    </h1>
+
+    <form method="post" enctype="multipart/form-data" class="bg-white rounded-lg shadow-md p-6">
+        {% csrf_token %}
+        
+        <div class="mb-4">
+            <label for="{{ form.title.id_for_label }}" class="block text-gray-700 font-medium mb-2">Title</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+                <p class="text-red-500 text-sm mt-1">{{ form.title.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <div class="mb-4">
+            <label for="{{ form.content.id_for_label }}" class="block text-gray-700 font-medium mb-2">Content</label>
+            {{ form.content }}
+            {% if form.content.errors %}
+                <p class="text-red-500 text-sm mt-1">{{ form.content.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <div class="mb-6">
+            <label for="{{ form.image.id_for_label }}" class="block text-gray-700 font-medium mb-2">Image (optional)</label>
+            {{ form.image }}
+            {% if form.image.errors %}
+                <p class="text-red-500 text-sm mt-1">{{ form.image.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <div class="flex justify-end space-x-4">
+            <a href="{% url 'home' %}" class="btn bg-gray-500 text-white hover:bg-gray-600 px-10">Cancel</a>
+            <button type="submit" class="btn btn-primary px-10">
+                {% if form.instance.pk %}Update Post{% else %}Create Post{% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %} 
