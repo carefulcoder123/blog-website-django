@@ -1,5 +1,4 @@
-Django==5.2.1
-Pillow==10.2.0  # For handling images in your blog
-django-crispy-forms==2.1  # For better form rendering
-gunicorn==21.2.0  # For running the application on PythonAnywhere
-whitenoise==6.6.0  # For serving static files
+Django==4.2.9
+Pillow==10.0.0
+django-crispy-forms==2.0
+whitenoise==6.5.0
